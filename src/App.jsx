@@ -43,6 +43,21 @@ export default function App() {
     getRandomPassword(basePassword);
   };
 
+  //Function for check strength of the password
+  const passwordStrength = (password) => {
+    const passwordLength = password.length;
+    if (passwordLength < 7) {
+      return "Weak";
+    } else if (passwordLength < 11) {
+      return "medium";
+    } else if (passwordLength < 15) {
+      return "Strong";
+    } else if (passwordLength < 20) {
+      return "Very strong";
+    }
+  };
+  const passwordLength = passwordStrength(password);
+
   const handleCheckBox = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -54,7 +69,7 @@ export default function App() {
     <div>
       <div>
         <p>The password is : {password}</p>
-        <button onClick={copyPassword}>Copier</button>
+        <button onClick={copyPassword}>Copy</button>
       </div>
       <form onSubmit={GeneratePassword}>
         <div>
@@ -113,7 +128,7 @@ export default function App() {
           <label htmlFor="range">Character length : {rangeInput}</label>
         </div>
         <div>
-          <p>Strength :</p>
+          <p>Strength :{passwordLength}</p>
         </div>
         <input type="submit" value="Generate" />
       </form>
