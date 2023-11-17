@@ -18,6 +18,12 @@ export default function App() {
     setPassword(generatedPassword);
   };
 
+  //Function for handle Copy password
+  const copyPassword = () => {
+    navigator.clipboard.writeText(password);
+    alert("The password copied");
+  };
+
   const GeneratePassword = (e) => {
     e.preventDefault();
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -48,7 +54,7 @@ export default function App() {
     <div>
       <div>
         <p>The password is : {password}</p>
-        <button>Copier</button>
+        <button onClick={copyPassword}>Copier</button>
       </div>
       <form onSubmit={GeneratePassword}>
         <div>
